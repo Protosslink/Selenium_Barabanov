@@ -80,7 +80,9 @@ public class InsuranceTest {
         fillField(By.id("passportNumber"), passportNumber);
         fillField(By.id("documentIssue"), passportIssue);
         fillField(By.id("documentDate"), passportDateOfIssue);
+        driver.findElement(By.id("person_birthDate")).click();
         fillField(By.id("person_birthDate"), birthDate);
+        driver.findElement(By.id("birthDate_vzr_ins_0")).click();
         fillField(By.id("birthDate_vzr_ins_0"), birthDate);
 
         Assert.assertEquals("Ошибка ввода поля Фамилия",lastName, driver.findElement(By.id("surname_vzr_ins_0")).getAttribute("value"));
@@ -98,7 +100,17 @@ public class InsuranceTest {
         driver.findElement(By.xpath("//label[@for=\"checkbox-person_isEmptyMiddleName\"]/span[@class=\"checkbox\"]")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        System.out.println("qq");
+        Assert.assertEquals("Ошибка При заполнении данных произошла ошибка не появилась "
+                , "При заполнении данных произошла ошибка", driver.findElement(By.xpath("//div[@class=\"alert-form alert-form-error\"]")).getText());
+
+        Assert.assertEquals("Ошибка Поле не заполнено. не появилась ", "Поле не заполнено."
+                , driver.findElement(By.xpath("//input[@id='phone']/..//span[@class='invalid-validate form-control__message']")).getText());
+
+        Assert.assertEquals("Ошибка Поле не заполнено. не появилась ", "Поле не заполнено."
+                , driver.findElement(By.xpath("//input[@id='email']/..//span[@class='invalid-validate form-control__message']")).getText());
+
+        Assert.assertEquals("Ошибка Поле не заполнено. не появилась ", "Поле не заполнено."
+                , driver.findElement(By.xpath("//input[@id='repeatEmail']/..//span[@class='invalid-validate form-control__message']")).getText());
 
 
     }
