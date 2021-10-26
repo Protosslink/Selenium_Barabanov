@@ -16,6 +16,10 @@ import static org.junit.Assert.assertEquals;
 
 public class BaseSteps {
 
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
     protected static WebDriver driver;
     protected static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();

@@ -5,19 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import steps.BaseSteps;
 
-public class MainPage {
-    public String mainWindow;
+public class MainPage extends BaseSteps {
 
     public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[contains(@class,'services-new__content')]")
-    WebElement serviceMenu;
+    public String mainWindow;
 
-    public void selectServiceMenu(String nameServiceMenu) {
-        serviceMenu.findElement(By.xpath("//div[contains(@class,\"services-new__item-title\") and text()='" + nameServiceMenu + "']")).click();
+    @FindBy(xpath = "//ul[@class='services-new__list']")
+    WebElement menuItems;
+
+    public void selectServiceMenu(String menuMainItem) {
+        menuItems.findElement(By.xpath("//div[text()='" + menuMainItem + "']")).click();
     }
 
 }

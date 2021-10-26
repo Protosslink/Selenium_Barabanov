@@ -6,9 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import steps.BaseSteps;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -16,14 +18,15 @@ import java.util.List;
 
 import static java.time.Duration.*;
 
-public class TvAndAccessoriesPage {
-    public TvAndAccessoriesPage(WebDriver driver) {
+public class MarketPageElectronicSub extends BaseSteps {
+    public MarketPageElectronicSub(WebDriver driver) {
         PageFactory.initElements(driver, this);
         Wait<WebDriver> waiting = new WebDriverWait(driver,Duration.ofSeconds(30));
     }
+    Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(),Duration.ofSeconds(30));
 
     @FindBy(xpath = "//div[@data-grabber='SearchFilters']//span[text()='Все фильтры']")
-    WebElement ButtonAllFilters;
+    public WebElement buttonAllFilters;
 
     @FindBy(xpath = "//div[@data-filter-id='glprice']//div[@data-prefix='от']/input")
     public WebElement priceOt;
@@ -44,20 +47,21 @@ public class TvAndAccessoriesPage {
     WebElement searchButton;
 
     public void clickButtonAllFilters() {
-        this.ButtonAllFilters.click();
+        wait.until(ExpectedConditions.visibilityOf(buttonAllFilters)).click();
     }
 
-    public void fillField(WebElement element, String valueString) {
-        element.click();
-        element.clear();
-        element.sendKeys(valueString);
+    public void fillField(String valueString) {
+        priceOt.click();
+        priceOt.clear();
+        priceOt.sendKeys(valueString);
     }
 
     public void showOffers() {
-        showOffers.click();
+        wait.until(ExpectedConditions.visibilityOf(showOffers)).click();
     }
 
-    public int getQuantityOffers() {
+    public int getQuantityOffers() throws InterruptedException {
+        Thread.sleep(2000);
         return Integer.parseInt(showOffers.getText().replaceAll("[^0-9]", ""));
     }
 
@@ -68,15 +72,15 @@ public class TvAndAccessoriesPage {
     }
 
     public void clickSearchButton() {
-        searchButton.click();
+        wait.until(ExpectedConditions.visibilityOf(searchButton)).click();
     }
 
     public void activateFilterCheckbox(String checkBoxCompanyName) {
-        searchFilterMenu.findElement(By.xpath("//input[@type='checkbox' and @value='" + checkBoxCompanyName + "']/parent::label")).click();
+        wait.until(ExpectedConditions.visibilityOf(searchFilterMenu.findElement(By.xpath("//input[@type='checkbox' and @value='" + checkBoxCompanyName + "']/parent::label")))).click();
     }
 
     public void checkFilterCheckbox(String checkBoxCompanyName) {
-        searchFilterMenu.findElement(By.xpath("//input[@type='checkbox' and @value='" + checkBoxCompanyName + "']/parent::label")).isSelected();
+        wait.until(ExpectedConditions.visibilityOf(searchFilterMenu.findElement(By.xpath("//input[@type='checkbox' and @value='" + checkBoxCompanyName + "']/parent::label")))).isSelected();
     }
 
     public void waitTime(int time) throws InterruptedException {
@@ -88,5 +92,15 @@ public class TvAndAccessoriesPage {
         System.out.println(secondElement);
         Assert.assertEquals("Элементы не равны", firstElement, secondElement);
     }
+
+    public void checkQuantityOffers(List<WebElement> contentResults, int quantityOffers) {
+        wait.until(ExpectedConditions.visibilityOf(contentResults.get(0)));
+        if (quantityOffers == contentResults.size()) {
+            System.out.println("Количество предложений совпадает " + quantityOffers + " = " + contentResults.size());
+        } else {
+            System.out.println("Количество предложений не совпадает " + quantityOffers + " != " + contentResults.size());
+        }
+    }
+
 
 }

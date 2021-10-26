@@ -1,3 +1,4 @@
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -5,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MainPage;
 import pages.MarketPage;
 import pages.MarketPageElectronics;
-import pages.TvAndAccessoriesPage;
+import pages.MarketPageElectronicSub;
 import steps.BaseSteps;
 
 import java.time.Duration;
@@ -14,7 +15,7 @@ import java.util.Set;
 public class YandexTest extends BaseSteps {
 
     @Test
-    //@Ignore
+    @Ignore
     //Сценарий №1
     public void testOne() throws InterruptedException {
         String menuMainItem = "Маркет";
@@ -24,6 +25,7 @@ public class YandexTest extends BaseSteps {
         String companySamsung = "Samsung";
         String firstElement;
         String element;
+        String price = "500000";
         int quantityOffers;
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -46,37 +48,27 @@ public class YandexTest extends BaseSteps {
 
         MarketPageElectronics marketPageElectronics = new MarketPageElectronics(driver);
         marketPageElectronics.selectElectronicsMenu(ElectronicsMenuItem);
-
-        TvAndAccessoriesPage tvAndAccessoriesPage = new TvAndAccessoriesPage(driver);
-        tvAndAccessoriesPage.clickButtonAllFilters();
+        MarketPageElectronicSub marketPageElectronicSub = new MarketPageElectronicSub(driver);
+        marketPageElectronicSub.clickButtonAllFilters();
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[contains(text(),'Сбросить фильтры')]"))));
-        tvAndAccessoriesPage.fillField(tvAndAccessoriesPage.priceOt, "500000");
-        tvAndAccessoriesPage.waitTime(1000);
-        tvAndAccessoriesPage.activateFilterCheckbox(companyLG);
-        tvAndAccessoriesPage.activateFilterCheckbox(companySamsung);
-        tvAndAccessoriesPage.checkFilterCheckbox(companyLG);
-        tvAndAccessoriesPage.checkFilterCheckbox(companySamsung);
-        tvAndAccessoriesPage.waitTime(1000);
-        quantityOffers = tvAndAccessoriesPage.getQuantityOffers();
-        tvAndAccessoriesPage.waitTime(1000);
-        tvAndAccessoriesPage.showOffers();
+        marketPageElectronicSub.fillField(price);
+        marketPageElectronicSub.activateFilterCheckbox(companyLG);
+        marketPageElectronicSub.activateFilterCheckbox(companySamsung);
+        marketPageElectronicSub.checkFilterCheckbox(companyLG);
+        marketPageElectronicSub.checkFilterCheckbox(companySamsung);
 
-        if (quantityOffers == tvAndAccessoriesPage.contentResults.size()) {
-            System.out.println("Количество предложений совпадает " + quantityOffers + " = " + tvAndAccessoriesPage.contentResults.size());
-        } else {
-            System.out.println("Количество предложений не совпадает " + quantityOffers + " != " + tvAndAccessoriesPage.contentResults.size());
-        }
-        firstElement = tvAndAccessoriesPage.contentResults.get(1).getAttribute("title");
-        tvAndAccessoriesPage.fillSearchBar(firstElement);
-        tvAndAccessoriesPage.clickSearchButton();
-        tvAndAccessoriesPage.waitTime(1000);
-        element = tvAndAccessoriesPage.contentResults.get(0).getAttribute("title");
-        tvAndAccessoriesPage.waitTime(1000);
-        tvAndAccessoriesPage.checkOffer(element, firstElement);
+        quantityOffers = marketPageElectronicSub.getQuantityOffers();
+        marketPageElectronicSub.showOffers();
+        marketPageElectronicSub.checkQuantityOffers(marketPageElectronicSub.contentResults, quantityOffers);
+        firstElement = marketPageElectronicSub.contentResults.get(1).getAttribute("title");
+        marketPageElectronicSub.fillSearchBar(firstElement);
+        marketPageElectronicSub.clickSearchButton();
+        element = marketPageElectronicSub.contentResults.get(0).getAttribute("title");
+        marketPageElectronicSub.checkOffer(element, firstElement);
     }
 
     @Test
-    //@Ignore
+    @Ignore
     //Сценарий №2
     public void testTwo() throws InterruptedException {
         String menuMainItem = "Маркет";
@@ -85,6 +77,7 @@ public class YandexTest extends BaseSteps {
         String companySennheiser = "Sennheiser";
         String firstElement;
         String element;
+        String price = "50000";
         int quantityOffers;
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -106,30 +99,20 @@ public class YandexTest extends BaseSteps {
 
         MarketPageElectronics marketPageElectronics = new MarketPageElectronics(driver);
         marketPageElectronics.selectElectronicsMenu(ElectronicsMenuItem);
-
-        TvAndAccessoriesPage tvAndAccessoriesPage = new TvAndAccessoriesPage(driver);
-        tvAndAccessoriesPage.clickButtonAllFilters();
+        MarketPageElectronicSub marketPageElectronicSub = new MarketPageElectronicSub(driver);
+        marketPageElectronicSub.clickButtonAllFilters();
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[contains(text(),'Сбросить фильтры')]"))));
-        tvAndAccessoriesPage.fillField(tvAndAccessoriesPage.priceOt, "50000");
-        tvAndAccessoriesPage.waitTime(1000);
-        tvAndAccessoriesPage.activateFilterCheckbox(companySennheiser);
-        tvAndAccessoriesPage.checkFilterCheckbox(companySennheiser);
-        tvAndAccessoriesPage.waitTime(1000);
-        quantityOffers = tvAndAccessoriesPage.getQuantityOffers();
-        tvAndAccessoriesPage.waitTime(1000);
-        tvAndAccessoriesPage.showOffers();
+        marketPageElectronicSub.fillField(price);
 
-        if (quantityOffers == tvAndAccessoriesPage.contentResults.size()) {
-            System.out.println("Количество предложений совпадает " + quantityOffers + " = " + tvAndAccessoriesPage.contentResults.size());
-        } else {
-            System.out.println("Количество предложений не совпадает " + quantityOffers + " != " + tvAndAccessoriesPage.contentResults.size());
-        }
-        firstElement = tvAndAccessoriesPage.contentResults.get(1).getAttribute("title");
-        tvAndAccessoriesPage.fillSearchBar(firstElement);
-        tvAndAccessoriesPage.clickSearchButton();
-        tvAndAccessoriesPage.waitTime(1000);
-        element = tvAndAccessoriesPage.contentResults.get(0).getAttribute("title");
-        tvAndAccessoriesPage.waitTime(1000);
-        tvAndAccessoriesPage.checkOffer(element, firstElement);
+        marketPageElectronicSub.activateFilterCheckbox(companySennheiser);
+        marketPageElectronicSub.checkFilterCheckbox(companySennheiser);
+        quantityOffers = marketPageElectronicSub.getQuantityOffers();
+        marketPageElectronicSub.showOffers();
+        marketPageElectronicSub.checkQuantityOffers(marketPageElectronicSub.contentResults, quantityOffers);
+        firstElement = marketPageElectronicSub.contentResults.get(1).getAttribute("title");
+        marketPageElectronicSub.fillSearchBar(firstElement);
+        marketPageElectronicSub.clickSearchButton();
+        element = marketPageElectronicSub.contentResults.get(0).getAttribute("title");
+        marketPageElectronicSub.checkOffer(element, firstElement);
     }
 }
