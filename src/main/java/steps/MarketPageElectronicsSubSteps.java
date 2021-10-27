@@ -33,7 +33,7 @@ public class MarketPageElectronicsSubSteps extends BaseSteps {
         return new MarketPageElectronicSub(driver).getQuantityOffers();
     }
 
-    @Step("поле {0} заполняется значением {1}")
+    @Step("поле поиска заполняется значением {0}")
     public void stepFillSearchBar(String string) {
         new MarketPageElectronicSub(driver).fillSearchBar(string);
     }
