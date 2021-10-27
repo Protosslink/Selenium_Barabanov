@@ -7,7 +7,8 @@ import pages.MainPage;
 import pages.MarketPage;
 import pages.MarketPageElectronics;
 import pages.MarketPageElectronicSub;
-import steps.BaseSteps;
+import ru.yandex.qatools.allure.annotations.Title;
+import steps.*;
 
 import java.time.Duration;
 import java.util.Set;
@@ -115,4 +116,5 @@ public class YandexTest extends BaseSteps {
         element = marketPageElectronicSub.contentResults.get(0).getAttribute("title");
         marketPageElectronicSub.checkOffer(element, firstElement);
     }
+
 }

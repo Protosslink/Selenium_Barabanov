@@ -12,7 +12,7 @@ import steps.*;
 import java.util.HashMap;
 import java.util.Set;
 
-public class YadnexTestForAllureReport extends BaseSteps {
+public class YandexTestForAllureReport extends BaseSteps {
 
     @Test
     //@Ignore
@@ -32,6 +32,8 @@ public class YadnexTestForAllureReport extends BaseSteps {
         MarketPageSteps marketPageSteps = new MarketPageSteps();
         MarketPageElectronicsSteps marketPageElectronicsSteps = new MarketPageElectronicsSteps();
         MarketPageElectronicsSubSteps marketPageElectronicsSubSteps = new MarketPageElectronicsSubSteps();
+
+        driver.get(baseUrl);
 
         mainSteps.stepSelectServiceMenu(menuMainItem);
         mainSteps.mainWindow = driver.getWindowHandle();

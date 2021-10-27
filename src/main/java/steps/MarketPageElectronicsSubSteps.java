@@ -18,7 +18,7 @@ public class MarketPageElectronicsSubSteps extends BaseSteps {
         new MarketPageElectronicSub(driver).clickButtonAllFilters();
     }
 
-    @Step("поле {0} заполняется значением {1}")
+    @Step("поле цена от заполняется значением {0}")
     public void stepFillField(String valueString) {
         new MarketPageElectronicSub(driver).fillField(valueString);
     }
