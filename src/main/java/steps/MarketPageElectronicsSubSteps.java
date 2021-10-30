@@ -10,9 +10,6 @@ import java.util.List;
 
 public class MarketPageElectronicsSubSteps extends BaseSteps {
 
-    @FindBy(xpath = "//div[@data-apiary-widget-id='/content/results']//h3[@data-zone-name='title']//a[@title]")
-    public List<WebElement> contentResults = new ArrayList();
-
     @Step("выполнено нажатие на кнопку - Все фильтры")
     public void stepClickButtonAllFilters() {
         new MarketPageElectronicSub(driver).clickButtonAllFilters();
@@ -28,7 +25,7 @@ public class MarketPageElectronicsSubSteps extends BaseSteps {
         new MarketPageElectronicSub(driver).showOffers();
     }
 
-    @Step("получение значения {0} количества предложений")
+    @Step("получение значения количества предложений")
     public int stepGetQuantityOffers() throws InterruptedException {
         return new MarketPageElectronicSub(driver).getQuantityOffers();
     }
@@ -59,8 +56,13 @@ public class MarketPageElectronicsSubSteps extends BaseSteps {
     }
 
     @Step("выполнена проверка количества предложений {0} и {1}")
-    public void stepCheckQuantityOffers(List<WebElement> contentResults, int quantityOffers){
-        new MarketPageElectronicSub(driver).checkQuantityOffers(contentResults,quantityOffers);
+    public void stepCheckQuantityOffers(int quantityOffers){
+        new MarketPageElectronicSub(driver).checkQuantityOffers(quantityOffers);
+    }
+
+    @Step("получен title элемента {0} из списка contentResults")
+    public String stepGetTitleAttribute(int numItem){
+        return new MarketPageElectronicSub(driver).getTitleAttribute(numItem);
     }
 
 }

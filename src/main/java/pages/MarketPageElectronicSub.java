@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,9 +20,13 @@ import static java.time.Duration.*;
 public class MarketPageElectronicSub extends BaseSteps {
     public MarketPageElectronicSub(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        Wait<WebDriver> waiting = new WebDriverWait(driver,Duration.ofSeconds(30));
+        Wait<WebDriver> waiting = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
-    Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(),Duration.ofSeconds(30));
+    Wait<WebDriver> wait;
+
+    {
+        wait = new WebDriverWait(BaseSteps.getDriver(), Duration.ofSeconds(30));
+    }
 
     @FindBy(xpath = "//div[@data-grabber='SearchFilters']//span[text()='Все фильтры']")
     public WebElement buttonAllFilters;
@@ -46,6 +49,19 @@ public class MarketPageElectronicSub extends BaseSteps {
     @FindBy(xpath = "//div[@data-apiary-widget-name=\"@MarketNode/HeaderSearch\"]//span[text()='Найти']")
     WebElement searchButton;
 
+    public String getTitleAttribute(int numItem){
+        return contentResults.get(numItem).getAttribute("title");
+    }
+
+    public void checkQuantityOffers(int quantityOffers) {
+        wait.until(ExpectedConditions.visibilityOf(contentResults.get(0)));
+        if (contentResults.size() == quantityOffers) {
+            System.out.println("Количество предложений совпадает " + quantityOffers + " = " + contentResults.size());
+        } else {
+            System.out.println("Количество предложений не совпадает " + quantityOffers + " != " + contentResults.size());
+        }
+    }
+
     public void clickButtonAllFilters() {
         wait.until(ExpectedConditions.visibilityOf(buttonAllFilters)).click();
     }
@@ -61,7 +77,7 @@ public class MarketPageElectronicSub extends BaseSteps {
     }
 
     public int getQuantityOffers() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         return Integer.parseInt(showOffers.getText().replaceAll("[^0-9]", ""));
     }
 
@@ -93,14 +109,7 @@ public class MarketPageElectronicSub extends BaseSteps {
         Assert.assertEquals("Элементы не равны", firstElement, secondElement);
     }
 
-    public void checkQuantityOffers(List<WebElement> contentResults, int quantityOffers) {
-        wait.until(ExpectedConditions.visibilityOf(contentResults.get(0)));
-        if (quantityOffers == contentResults.size()) {
-            System.out.println("Количество предложений совпадает " + quantityOffers + " = " + contentResults.size());
-        } else {
-            System.out.println("Количество предложений не совпадает " + quantityOffers + " != " + contentResults.size());
-        }
-    }
+
 
 
 }

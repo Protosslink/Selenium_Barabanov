@@ -1,22 +1,25 @@
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MainPage;
 import pages.MarketPage;
 import pages.MarketPageElectronics;
 import pages.MarketPageElectronicSub;
+import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
 
 public class YandexTest extends BaseSteps {
 
     @Test
     @Ignore
-    //Сценарий №1
+    @Title("Сценарий 1")
     public void testOne() throws InterruptedException {
         String menuMainItem = "Маркет";
         String menuMarketItem = "Электроника";
@@ -27,6 +30,7 @@ public class YandexTest extends BaseSteps {
         String element;
         String price = "500000";
         int quantityOffers;
+        int numItem = 0;
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -59,17 +63,18 @@ public class YandexTest extends BaseSteps {
 
         quantityOffers = marketPageElectronicSub.getQuantityOffers();
         marketPageElectronicSub.showOffers();
-        marketPageElectronicSub.checkQuantityOffers(marketPageElectronicSub.contentResults, quantityOffers);
-        firstElement = marketPageElectronicSub.contentResults.get(1).getAttribute("title");
+        marketPageElectronicSub.checkQuantityOffers(quantityOffers);
+
+        firstElement = marketPageElectronicSub.getTitleAttribute(0);
         marketPageElectronicSub.fillSearchBar(firstElement);
         marketPageElectronicSub.clickSearchButton();
-        element = marketPageElectronicSub.contentResults.get(0).getAttribute("title");
+        element = marketPageElectronicSub.getTitleAttribute(0);
         marketPageElectronicSub.checkOffer(element, firstElement);
     }
 
     @Test
     @Ignore
-    //Сценарий №2
+    @Title("Сценарий 2")
     public void testTwo() throws InterruptedException {
         String menuMainItem = "Маркет";
         String menuMarketItem = "Электроника";
@@ -79,6 +84,7 @@ public class YandexTest extends BaseSteps {
         String element;
         String price = "50000";
         int quantityOffers;
+        int numItem = 0;
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -108,7 +114,7 @@ public class YandexTest extends BaseSteps {
         marketPageElectronicSub.checkFilterCheckbox(companySennheiser);
         quantityOffers = marketPageElectronicSub.getQuantityOffers();
         marketPageElectronicSub.showOffers();
-        marketPageElectronicSub.checkQuantityOffers(marketPageElectronicSub.contentResults, quantityOffers);
+        marketPageElectronicSub.checkQuantityOffers(quantityOffers);
         firstElement = marketPageElectronicSub.contentResults.get(1).getAttribute("title");
         marketPageElectronicSub.fillSearchBar(firstElement);
         marketPageElectronicSub.clickSearchButton();
