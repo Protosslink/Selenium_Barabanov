@@ -1,21 +1,12 @@
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.MainPage;
-import pages.MarketPage;
-import pages.MarketPageElectronicSub;
-import pages.MarketPageElectronics;
 import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
-
-import java.util.HashMap;
 import java.util.Set;
 
-public class YandexTestForAllureReport extends BaseSteps {
+public class TestYandexForAllureReport extends BaseSteps {
 
     @Test
-    //@Ignore
     @Title("Сценарий 1")
     public void testInsurance() throws InterruptedException {
         String menuMainItem = "Маркет";

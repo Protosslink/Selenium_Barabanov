@@ -7,7 +7,6 @@ import pages.MainPage;
 import pages.MarketPage;
 import pages.MarketPageElectronics;
 import pages.MarketPageElectronicSub;
-import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
 
 import java.time.Duration;

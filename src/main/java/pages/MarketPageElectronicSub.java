@@ -38,7 +38,7 @@ public class MarketPageElectronicSub extends BaseSteps {
     WebElement showOffers;
 
     @FindBy(xpath = "//div[@data-apiary-widget-id='/content/results']//h3[@data-zone-name='title']//a[@title]")
-    public List<WebElement> contentResults = new ArrayList<>();
+    public List<WebElement> contentResults = new ArrayList();
 
     @FindBy(xpath = "//div[@data-apiary-widget-name='@MarketNode/HeaderSearch']//input[@placeholder='Искать товары']")
     WebElement searchBar;

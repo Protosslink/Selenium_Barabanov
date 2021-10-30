@@ -11,7 +11,7 @@ import java.util.List;
 public class MarketPageElectronicsSubSteps extends BaseSteps {
 
     @FindBy(xpath = "//div[@data-apiary-widget-id='/content/results']//h3[@data-zone-name='title']//a[@title]")
-    public List<WebElement> contentResults = new ArrayList<>();
+    public List<WebElement> contentResults = new ArrayList();
 
     @Step("выполнено нажатие на кнопку - Все фильтры")
     public void stepClickButtonAllFilters() {
