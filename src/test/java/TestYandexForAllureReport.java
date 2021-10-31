@@ -40,14 +40,9 @@ public class TestYandexForAllureReport extends BaseSteps {
         driver.get(baseUrl);
 
         mainSteps.stepSelectServiceMenu(menuMainItem);
-        mainSteps.mainWindow = driver.getWindowHandle();
 
-        Set<String> windows = driver.getWindowHandles();
-        for (String window : windows) {
-            if (!window.equals(mainSteps.mainWindow)) {
-                driver.switchTo().window(window);
-            }
-        }
+        setActivePageInPagesList();
+        switchActivatePage();
 
         marketPageSteps.stepSelectMarketMenu(menuMarketItem);
         marketPageElectronicsSteps.stepSelectElectronicsMenu(ElectronicsMenuItem);
@@ -88,14 +83,9 @@ public class TestYandexForAllureReport extends BaseSteps {
         driver.get(baseUrl);
 
         mainSteps.stepSelectServiceMenu(menuMainItem);
-        mainSteps.mainWindow = driver.getWindowHandle();
 
-        Set<String> windows = driver.getWindowHandles();
-        for (String window : windows) {
-            if (!window.equals(mainSteps.mainWindow)) {
-                driver.switchTo().window(window);
-            }
-        }
+        setActivePageInPagesList();
+        switchActivatePage();
 
         marketPageSteps.stepSelectMarketMenu(menuMarketItem);
         marketPageElectronicsSteps.stepSelectElectronicsMenu(ElectronicsMenuItem);

@@ -29,6 +29,7 @@ public class YandexTest extends BaseSteps {
         String firstElement;
         String element;
         String price = "500000";
+        String mainWindow;
         int quantityOffers;
         int numItem = 0;
 
@@ -38,14 +39,9 @@ public class YandexTest extends BaseSteps {
 
         MainPage mainPage = new MainPage(driver);
         mainPage.selectServiceMenu(menuMainItem);
-        mainPage.mainWindow = driver.getWindowHandle();
 
-        Set<String> windows = driver.getWindowHandles();
-        for (String window : windows) {
-            if (!window.equals(mainPage.mainWindow)) {
-                driver.switchTo().window(window);
-            }
-        }
+        setActivePageInPagesList();
+        switchActivatePage();
 
         MarketPage marketPage = new MarketPage(driver);
         marketPage.selectMarketMenu(menuMarketItem);
@@ -65,10 +61,10 @@ public class YandexTest extends BaseSteps {
         marketPageElectronicSub.showOffers();
         marketPageElectronicSub.checkQuantityOffers(quantityOffers);
 
-        firstElement = marketPageElectronicSub.getTitleAttribute(0);
+        firstElement = marketPageElectronicSub.getTitleAttribute(numItem);
         marketPageElectronicSub.fillSearchBar(firstElement);
         marketPageElectronicSub.clickSearchButton();
-        element = marketPageElectronicSub.getTitleAttribute(0);
+        element = marketPageElectronicSub.getTitleAttribute(numItem);
         marketPageElectronicSub.checkOffer(element, firstElement);
     }
 
@@ -91,14 +87,9 @@ public class YandexTest extends BaseSteps {
         driver.get(baseUrl);
         MainPage mainPage = new MainPage(driver);
         mainPage.selectServiceMenu(menuMainItem);
-        mainPage.mainWindow = driver.getWindowHandle();
 
-        Set<String> windows = driver.getWindowHandles();
-        for (String window : windows) {
-            if (!window.equals(mainPage.mainWindow)) {
-                driver.switchTo().window(window);
-            }
-        }
+        setActivePageInPagesList();
+        switchActivatePage();
 
         MarketPage marketPage = new MarketPage(driver);
         marketPage.selectMarketMenu(menuMarketItem);
@@ -115,10 +106,10 @@ public class YandexTest extends BaseSteps {
         quantityOffers = marketPageElectronicSub.getQuantityOffers();
         marketPageElectronicSub.showOffers();
         marketPageElectronicSub.checkQuantityOffers(quantityOffers);
-        firstElement = marketPageElectronicSub.contentResults.get(1).getAttribute("title");
+        firstElement = marketPageElectronicSub.getTitleAttribute(numItem);
         marketPageElectronicSub.fillSearchBar(firstElement);
         marketPageElectronicSub.clickSearchButton();
-        element = marketPageElectronicSub.contentResults.get(0).getAttribute("title");
+        element = marketPageElectronicSub.getTitleAttribute(numItem);
         marketPageElectronicSub.checkOffer(element, firstElement);
     }
 

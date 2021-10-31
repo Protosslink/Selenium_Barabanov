@@ -10,10 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import steps.BaseSteps;
 
 import java.time.Duration;
 
-public class MarketPage {
+public class MarketPage extends BaseSteps {
     @FindBy(xpath = "//div[contains(@data-zone-name,'menu')]")
     WebElement marketMenu;
 

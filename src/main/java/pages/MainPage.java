@@ -14,7 +14,6 @@ public class MainPage extends BaseSteps {
         PageFactory.initElements(driver, this);
     }
 
-    public String mainWindow;
 
     @FindBy(xpath = "//ul[@class='services-new__list']")
     WebElement menuItems;
