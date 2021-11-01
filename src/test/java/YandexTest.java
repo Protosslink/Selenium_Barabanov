@@ -1,7 +1,6 @@
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MainPage;
@@ -10,10 +9,8 @@ import pages.MarketPageElectronics;
 import pages.MarketPageElectronicSub;
 import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
-
 import java.time.Duration;
-import java.util.List;
-import java.util.Set;
+
 
 public class YandexTest extends BaseSteps {
 

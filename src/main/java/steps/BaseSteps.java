@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.MainPage;
+import ru.yandex.qatools.allure.annotations.Step;
 import util.TestProperties;
 
 import java.time.Duration;
@@ -40,6 +41,16 @@ public class BaseSteps {
                 }
             }
         }
+
+   @Step("получили список вкладок браузера")
+   public void stepSetActivePageInPagesList(){
+        new BaseSteps().stepSetActivePageInPagesList();
+   }
+
+   @Step("активировали новую вкладку")
+   public void stepSwitchActivatePage(){
+        new BaseSteps().stepSwitchActivatePage();
+   }
 
 
     @BeforeClass

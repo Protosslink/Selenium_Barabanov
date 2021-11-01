@@ -1,12 +1,8 @@
 package steps;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.MarketPageElectronicSub;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MarketPageElectronicsSubSteps extends BaseSteps {
 

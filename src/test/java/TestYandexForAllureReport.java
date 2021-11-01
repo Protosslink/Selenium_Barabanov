@@ -1,19 +1,7 @@
-import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.MainPage;
-import pages.MarketPage;
-import pages.MarketPageElectronicSub;
-import pages.MarketPageElectronics;
 import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
-
-import java.time.Duration;
-import java.util.List;
-import java.util.Set;
 
 public class TestYandexForAllureReport extends BaseSteps {
 
@@ -41,8 +29,8 @@ public class TestYandexForAllureReport extends BaseSteps {
 
         mainSteps.stepSelectServiceMenu(menuMainItem);
 
-        setActivePageInPagesList();
-        switchActivatePage();
+        BaseSteps.setActivePageInPagesList();
+        BaseSteps.switchActivatePage();
 
         marketPageSteps.stepSelectMarketMenu(menuMarketItem);
         marketPageElectronicsSteps.stepSelectElectronicsMenu(ElectronicsMenuItem);
@@ -57,12 +45,12 @@ public class TestYandexForAllureReport extends BaseSteps {
         marketPageElectronicsSubSteps.stepCheckQuantityOffers(quantityOffers);
         firstElement = marketPageElectronicsSubSteps.stepGetTitleAttribute(numItem);
         marketPageElectronicsSubSteps.stepFillSearchBar(firstElement);
-                marketPageElectronicsSubSteps.stepClickSearchButton();
+        marketPageElectronicsSubSteps.stepClickSearchButton();
         element = marketPageElectronicsSubSteps.stepGetTitleAttribute(numItem);
         marketPageElectronicsSubSteps.stepCheckOffer(element, firstElement);
     }
 
-    @Test
+    //@Test
     @Title("Сценарий 2")
     public void testInsuranceTwo() throws InterruptedException {
         String menuMainItem = "Маркет";
@@ -84,16 +72,16 @@ public class TestYandexForAllureReport extends BaseSteps {
 
         mainSteps.stepSelectServiceMenu(menuMainItem);
 
-        setActivePageInPagesList();
-        switchActivatePage();
+        BaseSteps.setActivePageInPagesList();
+        BaseSteps.switchActivatePage();
 
         marketPageSteps.stepSelectMarketMenu(menuMarketItem);
         marketPageElectronicsSteps.stepSelectElectronicsMenu(ElectronicsMenuItem);
         marketPageElectronicsSubSteps.stepClickButtonAllFilters();
         marketPageElectronicsSubSteps.stepFillField(price);
         marketPageElectronicsSubSteps.stepActivateFilterCheckbox(companySennheiser);
-         marketPageElectronicsSubSteps.stepCheckFilterCheckbox(companySennheiser);
-         quantityOffers = marketPageElectronicsSubSteps.stepGetQuantityOffers();
+        marketPageElectronicsSubSteps.stepCheckFilterCheckbox(companySennheiser);
+        quantityOffers = marketPageElectronicsSubSteps.stepGetQuantityOffers();
         marketPageElectronicsSubSteps.stepShowOffers();
         marketPageElectronicsSubSteps.stepCheckQuantityOffers(quantityOffers);
         firstElement = marketPageElectronicsSubSteps.stepGetTitleAttribute(numItem);

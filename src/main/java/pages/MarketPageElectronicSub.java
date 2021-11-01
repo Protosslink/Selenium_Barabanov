@@ -10,12 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.BaseSteps;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.Duration.*;
 
 public class MarketPageElectronicSub extends BaseSteps {
     public MarketPageElectronicSub(WebDriver driver) {
